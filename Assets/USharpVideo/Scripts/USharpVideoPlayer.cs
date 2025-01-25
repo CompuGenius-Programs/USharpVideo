@@ -177,8 +177,9 @@ namespace UdonSharp.Video
                     SetPlayerMode(PLAYER_MODE_AVPRO);
                     _nextPlaylistIndex = 0; // SetPlayerMode sets this to -1, but we want to be able to keep it intact so reset to 0
 
-                    var syncController = GetComponentInChildren<SyncModeController>();
-                    syncController.SetStreamVisual();
+                    foreach (var syncController in GetComponentsInChildren<SyncModeController>()) {
+                        syncController.SetStreamVisual();
+                    }
                 }
 
                 _shuffleSeed = Random.Range(0, 10000);
